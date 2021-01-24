@@ -17,7 +17,7 @@ type dynamoStore struct {
 func NewDynamoStore() *dynamoStore {
 	endpoint := "http://localhost:8000"
 	db := dynamo.New(session.New(), &aws.Config{
-		Region:   aws.String("us-west-2"),
+		Region:   aws.String("us-west-1"),
 		Endpoint: &endpoint,
 	})
 
