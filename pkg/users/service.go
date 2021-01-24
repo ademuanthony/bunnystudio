@@ -13,3 +13,11 @@ type Service interface {
 	Update(ctx context.Context, user internal.User) error
 	Delete(ctx context.Context, userID string) error
 }
+
+type store interface {
+	Create(user internal.User) error
+	Update(user internal.User) error
+	FindByID(userID string) (*internal.User, error)
+	GetAll() ([]internal.User, error)
+	Delete(userID string) error
+}
