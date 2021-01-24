@@ -15,10 +15,10 @@ type dynamoStore struct {
 }
 
 func NewDynamoStore() *dynamoStore {
-	endpoint := "http://localhost:8000"
+	// endpoint := "http://localhost:8000"
 	db := dynamo.New(session.New(), &aws.Config{
 		Region:   aws.String("us-west-1"),
-		Endpoint: &endpoint,
+		// Endpoint: &endpoint,
 	})
 
 	if err := db.CreateTable(tableName, internal.Task{}).Run(); err != nil {
