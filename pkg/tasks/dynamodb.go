@@ -2,7 +2,6 @@ package tasks
 
 import (
 	"bonnystudio.com/taskmanager/internal"
-	"bonnystudio.com/taskmanager/internal/util"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
@@ -33,11 +32,7 @@ func (s *dynamoStore) Create(task internal.Task) error {
 }
 
 func (s *dynamoStore) Update(task internal.Task) error {
-	err := s.table.Update(task.ID, task).Run()
-	if err == dynamo.ErrNotFound {
-		err = util.ErrUnknown
-	}
-	return err
+	return s.table.Put(task).Run()
 }
 
 func (s *dynamoStore) GetByUserID(userID string) ([]internal.Task, error) {

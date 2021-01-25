@@ -33,11 +33,7 @@ func (s *dynamoStore) Create(user internal.User) error {
 }
 
 func (s *dynamoStore) Update(user internal.User) error {
-	err := s.table.Update(user.ID, user).Run()
-	if err == dynamo.ErrNotFound {
-		err = util.ErrUnknown
-	}
-	return err
+	return s.table.Put(user).Run()
 }
 
 func (s *dynamoStore) FindByID(userID string) (*internal.User, error) {
