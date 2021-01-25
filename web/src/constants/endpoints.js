@@ -1,0 +1,8 @@
+export const SERVICE_BASE = 'https://jphzc06jqk.execute-api.us-east-1.amazonaws.com/dev'
+export const USERS = SERVICE_BASE + '/users'
+export const USER_DETAILS = USERS + '/detail'
+export const UPDATE_USER = USERS + '/update'
+export const DELETE_USER = USERS + '/delete'
+export const TASKS = SERVICE_BASE + '/tasks'
+export const UPDATE_TASK = TASKS + '/update'
+export const NEW_TASK = TASKS + '/create'
