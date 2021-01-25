@@ -2,6 +2,7 @@ package users
 
 import (
 	"context"
+	"errors"
 	"os"
 
 	"bonnystudio.com/taskmanager/internal"
@@ -26,6 +27,9 @@ func (s userService) GetAll(_ context.Context) ([]internal.User, error) {
 }
 
 func (s userService) Create(ctx context.Context, name string) (*internal.User, error) {
+	if name == "" {
+		return nil, errors.New("Cannot create a user without a name")
+	}
 	user := internal.User{
 		ID:   uuid.New(),
 		Name: name,

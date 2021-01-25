@@ -2,6 +2,7 @@ package tasks
 
 import (
 	"context"
+	"errors"
 	"os"
 
 	"bonnystudio.com/taskmanager/internal"
@@ -22,6 +23,9 @@ func (s taskService) GetByUserID(_ context.Context, userID string) ([]internal.T
 }
 
 func (s taskService) Create(ctx context.Context, task internal.Task) (*internal.Task, error) {
+	if task.Description == "" {
+		return nil, errors.New("Cannot create a task with an empty description")
+	}
 	task.ID = uuid.New()
 	if err := s.store.Create(task); err != nil {
 		logger.Log("Error in store.Create", err)
