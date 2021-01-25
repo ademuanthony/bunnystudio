@@ -1,6 +1,9 @@
 # Bunny Studio task manager
 
 This is an MVP for the new Bunny Studio web application.
+
+The application is live a https://bunnystudio-tony.herokuapp.com/
+
 ## Technologies
 The application uses the following
 - Golang for the backend services
