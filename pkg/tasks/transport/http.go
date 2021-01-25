@@ -51,14 +51,10 @@ func decodeHTTPCreateRequest(_ context.Context, r *http.Request) (interface{}, e
 
 func decodeHTTPGetByUserIDRequest(_ context.Context, r *http.Request) (interface{}, error) {
 	var req endpoints.GetByUserIDRequest
-	if r.ContentLength == 0 {
-		logger.Log("Get by userID request with no body")
-		return req, nil
+	if err := r.ParseForm(); err != nil {
+		_ = logger.Log("ParseForm err", err, "GetByUserIDRequest")
 	}
-	err := json.NewDecoder(r.Body).Decode(&req)
-	if err != nil {
-		return nil, err
-	}
+	req.UserID = r.FormValue("userid")
 	return req, nil
 }
 

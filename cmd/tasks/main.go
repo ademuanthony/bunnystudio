@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	defaultHTTPPort = "80"
+	defaultHTTPPort = "5000"
 )
 
 func main() {

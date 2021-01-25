@@ -61,14 +61,10 @@ func decodeHTTPCreateRequest(_ context.Context, r *http.Request) (interface{}, e
 
 func decodeHTTPGetRequest(_ context.Context, r *http.Request) (interface{}, error) {
 	var req endpoints.GetRequest
-	if r.ContentLength == 0 {
-		logger.Log("Get request with no body")
-		return req, nil
+	if err := r.ParseForm(); err != nil {
+		_ = logger.Log("ParseForm err", err, "decodeHTTPGetRequest")
 	}
-	err := json.NewDecoder(r.Body).Decode(&req)
-	if err != nil {
-		return nil, err
-	}
+	req.UserID = r.FormValue("userid")
 	return req, nil
 }
 
