@@ -7,6 +7,7 @@ The application is live a https://bunnystudio-tony.herokuapp.com/
 ## Technologies
 The application uses the following
 - Golang for the backend services
+- Go-kit microservice toolkit (https://github.com/go-kit/kit)
 - Dynamodb for data storage
 - AWS API gateway
 - React for the frontend
